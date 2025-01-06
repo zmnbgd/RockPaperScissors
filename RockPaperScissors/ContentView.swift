@@ -7,10 +7,18 @@
 
 import SwiftUI
 
+//MARK: Custom Game Text Modifier 
+
 struct ContentView: View {
+    
+    @State private var selectedGameOption = ["🪨", "✂️", "📄"].shuffled()
+    
     var body: some View {
-        VStack {
+        ZStack {
             LinearGradient(colors: [.purple, .blue], startPoint: .top, endPoint: .bottom)
+            VStack {
+                Text("Result is ...")
+            }
         }
         .ignoresSafeArea(.all)
     }
