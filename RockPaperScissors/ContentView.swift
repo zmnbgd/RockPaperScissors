@@ -7,7 +7,24 @@
 
 import SwiftUI
 
-//MARK: Custom Game Text Modifier 
+//MARK: Custom Game Text Modifier
+struct fontModifier: ViewModifier {
+    var text: String
+    
+    func body(content: Content) -> some View {
+        Text(text)
+            .fontDesign(.serif)
+            .font(.headline)
+            .foregroundColor(.white)
+            .padding()
+    }
+}
+
+extension View {
+    func appTextModifier(text: String) -> some View {
+        modifier(fontModifier(text: text))
+    }
+}
 
 struct ContentView: View {
     
@@ -26,7 +43,8 @@ struct ContentView: View {
                 LinearGradient(gradient: Gradient(colors: [.purple, .black]), startPoint: .topLeading, endPoint: .bottomTrailing)
                 VStack {
                     VStack(spacing: 10) {
-                        Text("App Choice is ... \(moves[appChpoice])")
+//                        Text("App Choice is ... \(moves[appChpoice])")
+                        appTextModifier(text: "App Choice is ... \(moves[appChpoice])")
                             .font(.title3)
                             .foregroundColor(.black)
                             .fontWeight(.black)
@@ -47,11 +65,8 @@ struct ContentView: View {
                                     .padding()
                                     .frame(width: 100, height: 100)
                                     .background(Color.black)
-                                    .clipShape(Circle())
-                                
-                                
+                                    .clipShape(Circle()) 
                             }
-                            
                         }
                     }
                 }
