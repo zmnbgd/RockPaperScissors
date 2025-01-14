@@ -38,20 +38,29 @@ struct ContentView: View {
         ZStack {
             LinearGradient(gradient: Gradient(colors: [.black.opacity(0.4), .black]), startPoint: .topLeading, endPoint: .bottomTrailing)
                 .ignoresSafeArea()
+            
+            
             VStack {
                 Text("Rock Paper Scissors")
                     .font(.largeTitle).bold()
                     .foregroundColor(.white)
+                
+                
                 VStack {
-                    VStack(spacing: 30) {
-                        Spacer()
+                    
+                    
+                    VStack() {
                         Text("App move is ...?")
                             .font(.largeTitle).bold()
                             .foregroundColor(.white)
                         Text(moves[appMove])
                             .font(.largeTitle)
+                        Spacer()
                     }
-                    HStack(spacing: 20) {
+                    .frame(height: 300)
+                    
+                    
+                    HStack(spacing: 50) {
                         ForEach(0..<3) { number in
                             Button {
                                 //MARK: Selected move
@@ -62,20 +71,11 @@ struct ContentView: View {
                             }
                         }
                     }
-                    .padding(.top, 20)
+                    .frame(height: 300)
                 }
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, 20)
-                .background(.ultraThinMaterial)
-                .clipShape(.rect(cornerRadius: 20))
-                
-                Spacer()
-                
                 Text("Score: \(score)")
                     .foregroundStyle(.white)
                     .font(.title.bold())
-                
-                Spacer()
             }
             .padding()
         }
