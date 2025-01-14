@@ -51,13 +51,18 @@ struct ContentView: View {
                         Text(moves[appMove])
                             .font(.largeTitle)
                     }
-                    ForEach(0..<3) { number in
-                        Button {
-                            //MARK: Selected move
-                        } label: {
-                            Image(moves[number])
+                    HStack(spacing: 20) {
+                        ForEach(0..<3) { number in
+                            Button {
+                                //MARK: Selected move
+                                playerMove = number
+                            } label: {
+                                Text(moves[number])
+                                    .font(.largeTitle)
+                            }
                         }
                     }
+                    .padding(.top, 20)
                 }
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 20)
