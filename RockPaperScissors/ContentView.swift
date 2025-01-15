@@ -7,31 +7,14 @@
 
 import SwiftUI
 
-//MARK: Custom Game Text Modifier
-struct fontModifier: ViewModifier {
-    var text: String
-    
-    func body(content: Content) -> some View {
-        Text(text)
-            .fontDesign(.serif)
-            .font(.headline)
-            .foregroundColor(.white)
-            .padding()
-    }
-}
-
-extension View {
-    func appTextModifier(text: String) -> some View {
-        modifier(fontModifier(text: text))
-    }
-}
-
 struct ContentView: View {
     
     @State private var moves = ["✊🏼", "🤚🏼", "✌🏼"]
     @State private var appMove = Int.random(in: 0...2)
     @State private var playerMove: Int?
     @State private var score = 0
+    
+    @State private var showAppMove = false
     
     
     var body: some View {
@@ -46,7 +29,7 @@ struct ContentView: View {
                     .foregroundColor(.white)
                 
                 
-                VStack {
+                VStack{
                     
                     
                     VStack() {
@@ -57,14 +40,15 @@ struct ContentView: View {
                             .font(.largeTitle)
                         Spacer()
                     }
-                    .frame(height: 300)
+                    .frame(height: 180)
                     
                     
                     HStack(spacing: 50) {
                         ForEach(0..<3) { number in
                             Button {
                                 //MARK: Selected move
-                                playerMove = number
+                                //playerMove = number
+                                gameMove(number)
                             } label: {
                                 Text(moves[number])
                                     .font(.largeTitle)
@@ -78,6 +62,38 @@ struct ContentView: View {
                     .font(.title.bold())
             }
             .padding()
+        }
+    }
+    
+    func gameMove(_ number: Int) {
+      let move = Int.random(in: 0..<3)
+
+        if move == 0 || appMove == 0 {
+            score += 0
+        }
+        if move == 1 || appMove == 1 {
+            score += 0
+        }
+        if move == 2 || appMove == 2 {
+            score += 0
+        }
+        if move == 0 || appMove == 1 {
+            score += 1
+        }
+        if move == 0 || appMove == 2 {
+            score += 1
+        }
+        if move == 1 || appMove == 0 {
+            score -= 1
+        }
+        if move == 1 || appMove == 2 {
+            score -= 1
+        }
+        if move == 2 || appMove == 0 {
+            score -= 1
+        }
+        if move == 2 || appMove == 1 {
+            score += 1
         }
     }
 }
